@@ -1,6 +1,6 @@
 package aio;
 
-public class TimeServer {
+public class TimeClient {
 
     public static void main(String[] args) {
         int port = 8080;
@@ -12,7 +12,6 @@ public class TimeServer {
             }
         }
 
-        AsyncTimeServerHandler timeServer = new AsyncTimeServerHandler(port);
-        new Thread(timeServer, "AIO-AsyncTimeServerHanderl-001").start();
+        new Thread(new AsyncTimeClientHandler("127.0.0.1", port), "AIO-AsynvTimeClientHandler-001").start();
     }
 }
