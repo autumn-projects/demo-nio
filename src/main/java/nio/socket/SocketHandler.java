@@ -9,7 +9,7 @@ public class SocketHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        System.out.println("channel active>>>>>>>");
+//        System.out.println("channel active>>>>>>>");
     }
 
     @Override
@@ -17,14 +17,13 @@ public class SocketHandler extends ChannelInboundHandlerAdapter {
         ByteBuf message = (ByteBuf) msg;
         byte[] response = new byte[message.readableBytes()];
         message.readBytes(response);
-        System.out.println("receive client info: " + new String(response));
+        System.out.println("服务端搜到信息: " + new String(response));
 
-        String sendContent = "hello client ,im server, this is u say:" + new String(response);
+        String sendContent = new String(response);
         ByteBuf seneMsg = Unpooled.buffer(sendContent.length());
         seneMsg.writeBytes(sendContent.getBytes());
 
         ctx.writeAndFlush(seneMsg);
-        System.out.println("send info to client:" + sendContent);
     }
 
     @Override
