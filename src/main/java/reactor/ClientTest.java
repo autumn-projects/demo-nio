@@ -1,6 +1,7 @@
 package reactor;
 
-import pipeline.SocketClient;
+
+import nio.socket.SocketClient;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -55,7 +56,6 @@ public class ClientTest {
         }
         latch.await();
         System.out.println("耗时：" + (System.currentTimeMillis() - start));
-        System.out.println("失败次数：" + SocketClient.defaultTime);
         executorService.shutdown();//如果不shutdown工程不会结束
     }
 }
