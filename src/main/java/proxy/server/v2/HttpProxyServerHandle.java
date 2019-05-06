@@ -2,8 +2,11 @@ package proxy.server.v2;
 
 
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.*;
+
+import java.util.Map;
 
 public class HttpProxyServerHandle extends ChannelInboundHandlerAdapter {
     private ChannelFuture cf;
@@ -42,7 +45,12 @@ public class HttpProxyServerHandle extends ChannelInboundHandlerAdapter {
             ChannelFuture cf = bootstrap.connect(temp[0], port);
             cf.addListener(new ChannelFutureListener() {
                 public void operationComplete(ChannelFuture future) throws Exception {
+//                    Map<String, String> parmMap = new RequestParser(request).parse(); // 将GET, POST所有请求参数转换成Map对象
+//                    System.out.println("map:"+parmMap);
+
+//                    RequestParser.changeParams(request);
                     if (future.isSuccess()) {
+//                        System.out.println(msg);
                         future.channel().writeAndFlush(msg);
                     } else {
                         ctx.channel().close();
