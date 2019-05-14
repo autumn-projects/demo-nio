@@ -4,7 +4,7 @@ package proxy.server.v3;
 import proxy.server.v3.server.HttpProxyServer;
 import proxy.server.v3.server.HttpProxyServerConfig;
 
-public class NormalHttpProxyServer {
+public class  NormalHttpProxyServer {
 
   public static void main(String[] args) throws Exception {
    //new HttpProxyServer().start(9998);
